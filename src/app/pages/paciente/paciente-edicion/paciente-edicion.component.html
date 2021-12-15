@@ -1,0 +1,46 @@
+<form autocomplete="off" #frmPaciente="ngForm" (ngSubmit)="registrar()"  [formGroup]="form">
+    
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>idPaciente</mat-label>
+        <input matInput formControlName="idPaciente" type="number">
+      </mat-form-field>
+      <br>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Nombres</mat-label>
+        <input matInput formControlName="nombres" required type="">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>apellidos</mat-label>
+        <input matInput formControlName="apellidos" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>DNI</mat-label>
+        <input matInput formControlName="dni" type="number" required>
+      </mat-form-field>
+
+      <br>
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>telefono</mat-label>
+        <input matInput formControlName="telefono" required>
+      </mat-form-field>
+
+      <br>
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>direccion</mat-label>
+        <input matInput formControlName="direccion" required>
+      </mat-form-field>
+     
+      <br>
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>email</mat-label>
+        <input matInput formControlName="email" required>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="example-full-width" [disabled]="frmPaciente.invalid" >Save</button>
+      <button type="button" mat-raised-button color="accent" class="example-full-width" [routerLink]="['/paciente']" routerLinkActive="router-link-active" >Cancelar</button>   
+</form>
+
+

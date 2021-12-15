@@ -1,0 +1,24 @@
+<mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>IdExamen</mat-label>
+    <input matInput [(ngModel)]="examen.idExamen" disabled="disabled">
+  </mat-form-field>
+
+  <mat-divider></mat-divider>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="examen.nombre">
+  </mat-form-field>
+
+  <mat-divider></mat-divider>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Descripcion</mat-label>
+    <input matInput [(ngModel)]="examen.descripcion">
+  </mat-form-field>
+
+  <mat-divider></mat-divider>
+
+  <button mat-raised-button color="primary" style="float: right;" (click)="aceptar()">Aceptar</button>
+  <button mat-raised-button color="accent" style="float: right;" (click)="cancelar()">Cancelar</button>
+

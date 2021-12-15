@@ -1,0 +1,52 @@
+<h1>Lista de pacientes</h1>
+
+<router-outlet></router-outlet>
+
+<div>
+  <mat-form-field>
+    <input type="text" matInput (keyup)="filtrar($event)" placeholder="Buscar paciente">
+  </mat-form-field>
+</div>
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="idPaciente">
+        <th  mat-sort-header mat-header-cell *matHeaderCellDef> idPaciente </th>
+        <td mat-cell  *matCellDef="let element"> {{element.idPaciente}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombres">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Nombres </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="apellidos">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Apellidos </th>
+        <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="priarmy" [routerLink]="['editar',element.idPaciente]" routerLinkActive="router-link-active" >
+            <mat-icon aria-hidden="false" aria-label="Example edit icon" color="primary">edit</mat-icon>
+          </button>
+         
+          <button mat-button color="warn" (click)="eliminar(element.idPaciente)">
+            <mat-icon aria-hidden="false" aria-label="Example delete icon" color="warn">delete</mat-icon>
+          </button>  
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+<mat-paginator [length]="100"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  aria-label="Select page">
+</mat-paginator>
+
+<button mat-fab style="float: right;" color="primary" aria-label="Create paciente"
+ [routerLink]="['/paciente/nuevo']"  >
+  <mat-icon>add</mat-icon>
+</button>
