@@ -18,8 +18,7 @@ import { ExamenDialogComponent } from './pages/examen/examen-dialog/examen-dialo
 import { EscecialidadComponent } from './pages/escecialidad/escecialidad.component';
 import { EspecialidadDialogComponent } from './pages/escecialidad/especialidad-dialog/especialidad-dialog.component';
 import { ConsultaComponent } from './pages/consulta/consulta.component';
-import { ConsultaEspecialComponent } from './pages/consulta/consulta-especial/consulta-especial.component';
-
+import { ConsultaEspecialComponent } from './pages/consulta-especial/consulta-especial.component';
 
 @NgModule({
   declarations: [

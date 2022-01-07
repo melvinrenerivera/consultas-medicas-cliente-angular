@@ -1,0 +1,110 @@
+<mat-toolbar>Registro de consultas Especial</mat-toolbar>
+
+<form  [formGroup]="form" style="margin-top: 5px;" (ngSubmit)="aceptar()">
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Pacientes</mat-label>
+        <input type="text"
+               placeholder="Buscar Paciente"
+               aria-label="Number"
+               matInput
+               [formControl]="myControlPaciente" formControlName="paciente"
+               [matAutocomplete]="autoPaciente">
+        <mat-autocomplete autoActiveFirstOption #autoPaciente="matAutocomplete" [displayWith]="mostrarPaciente">
+          <mat-option *ngFor="let p of pacientesFiltrados$ | async" [value]="p">
+            {{p.nombres}}  {{p.apellidos}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <br>
+
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Medicos</mat-label>
+        <input type="text"
+               placeholder="Buscar Medico"
+               aria-label="Number"
+               matInput
+               [formControl]="myControlMedico" formControlName="medico"
+               [matAutocomplete]="autoMedico">
+        <mat-autocomplete autoActiveFirstOption #autoMedico="matAutocomplete" [displayWith]="mostrarMedico">
+          <mat-option *ngFor="let p of medicosFiltrados$ | async" [value]="p">
+            {{p.nombres}}  {{p.apellidos}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <h4>Seleccionar Especialidad</h4>
+      <mat-form-field appearance="fill">
+        <mat-label>Especialidad</mat-label>
+        <mat-select formControlName="especiliadad">
+         <!--<mat-option *ngFor="let p of paciente" [value]="p.idPaciente">    {{p.nombres}}</mat-option> -->
+          <mat-option *ngFor="let e of especialidades " [value]="e">    {{e.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Seleccionar Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fecha">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      
+      <br>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>diagnostico</mat-label>
+        <input formControlName="diagnostico" matInput placeholder="Diagnostico" value="Sushi">
+      </mat-form-field>
+
+      <br>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Tratamiento</mat-label>
+        <textarea formControlName="tratamiento" matInput placeholder="Tratamiento"></textarea>
+      </mat-form-field>
+       <br>
+     
+       <button mat-raised-button (click)="agregar()" style="width: 100%;" color='primary'>Aceptar</button>
+       <br>
+   
+       <mat-accordion>
+           <mat-expansion-panel *ngFor="let d of detalleConsulta; let i=index" hideToggle>
+             <mat-expansion-panel-header>
+               <mat-panel-title>
+                 {{i+1}} {{d.diagnostico}}
+               </mat-panel-title>
+               <mat-panel-description>
+                 Ver tratamiento
+               </mat-panel-description>
+             </mat-expansion-panel-header>
+              
+           <mat-form-field>
+               <textarea matInput value="{{d.tratamiento}}" ></textarea>
+           </mat-form-field>
+             <button mat-raised-button color='warn' (click)="removeElement(i)">Delete</button>
+           </mat-expansion-panel>
+         </mat-accordion>
+   
+         <h4>Seleccionar Examenes</h4>
+         <mat-form-field appearance="fill">
+           <mat-label>Examenes</mat-label>
+           <mat-select [(value)]="examenSeleccionado" >
+            <mat-option *ngFor="let p of examenes" [value]="p">{{p.nombre}}</mat-option>
+           </mat-select>
+         </mat-form-field>
+   
+         <button mat-raised-button type="button" (click)='agregarExamen()' >Agregar examen</button>
+   
+   
+         <mat-list role="list">
+           <mat-list-item role="listitem" *ngFor="let e of examenesSeleccionados;let i=index">
+               {{i+1}} {{e.idExamen}} {{e.nombre}}
+               <button mat-raised-button color="warn" (click)="remover(i)">Remove</button>
+           </mat-list-item>
+         </mat-list>
+   
+   
+         <button mat-raised-button type="submit" >Guardar</button>
+
+    
+</form>
